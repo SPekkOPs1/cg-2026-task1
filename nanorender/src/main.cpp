@@ -43,14 +43,27 @@ int main() {
     // 1. Input
     ui_bridge_input(ctx, window);
 
-    // 2. Scene Rendering (Background)
+   // 2. Scene Rendering (Background)
     for (int i = 0; i < WIDTH * HEIGHT; i++) {
       // Simple gradient background
       int x = i % WIDTH;
       int y = i / WIDTH;
-      uint8_t r = (uint8_t)((float)x / WIDTH * 128) + 32;
-      uint8_t g = (uint8_t)((float)y / HEIGHT * 128) + 32;
-      uint8_t b = 64;
+      int squareSize = 350;
+      int left = (WIDTH - squareSize) / 2;
+      int top = (HEIGHT - squareSize) / 2;
+      int right = left + squareSize;
+      int bottom = top + squareSize;
+      uint8_t r, g, b;
+      if (x >= left && x < right && y >= top && y < bottom) {
+       // r = 255;
+        //g = (uint8_t)((x - left) * 255 / squareSize);
+        //b = (uint8_t)((y - top) * 255 / squareSize);
+        r = g = b = 255;
+      } else {
+        r = (uint8_t)(x * 255 / WIDTH);
+        g = (uint8_t)(y * 255 / HEIGHT);
+        b = 128;
+      }
       g_buffer[i] = MFB_RGB(r, g, b);
     }
 
