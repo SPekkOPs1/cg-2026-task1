@@ -55,10 +55,12 @@ int main() {
       int bottom = top + squareSize;
       uint8_t r, g, b;
       if (x >= left && x < right && y >= top && y < bottom) {
-       // r = 255;
-        //g = (uint8_t)((x - left) * 255 / squareSize);
-        //b = (uint8_t)((y - top) * 255 / squareSize);
-        r = g = b = 255;
+        float u = (x - left) / (float)(squareSize - 1);   // 0..1 across square width
+        float v = (y - top)  / (float)(squareSize - 1);   // 0..1 across square height
+
+        r = (uint8_t)(255.0f * (1.0f - u));  // red decreases left -> right
+        g = (uint8_t)(255.0f * u);           // green increases left -> right
+        b = (uint8_t)(255.0f * v);           // blue increases top -> bottom
       } else {
         r = (uint8_t)(x * 255 / WIDTH);
         g = (uint8_t)(y * 255 / HEIGHT);

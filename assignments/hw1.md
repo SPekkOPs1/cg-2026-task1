@@ -4,7 +4,7 @@
 
 In this assignment, you will explore low-level computer graphics and Immediate Mode Graphical User Interfaces, and draw some lines and curves. You will manipulate a raw framebuffer to render graphics and modify a real-time rendering loop to understand how UI state is calculated and drawn independently of user input.
 
-### Part 1: Manipulating the Framebuffer
+### Part 1: Manipulating the Framebuffer [ COMPLETE ] 
 
 ##### Background: The Framebuffer and MiniFB
 The image you see on your screen is ultimately driven by a **framebuffer**—a dedicated block of memory that holds the color data for every pixel on your display. In our application, we calculate these pixels by writing to `g_buffer`, which is simply a contiguous 1D array of 32-bit integers in memory. 
